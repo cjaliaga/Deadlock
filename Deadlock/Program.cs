@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using DryIoc;
 using DryIoc.Microsoft.DependencyInjection;
-using Microsoft.Azure.WebJobs.Script.WebHost.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Deadlock
@@ -59,7 +58,7 @@ namespace Deadlock
             });
             services.AddSingleton<Thing2>();
 
-            sp = new WebHostServiceProvider(services);
+            sp = services.CreateServiceProvider();
 
             var t1 = Task.Run(() =>
             {
